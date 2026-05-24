@@ -139,6 +139,7 @@ The benefit is a visible, runnable Mastery Coach that Mario can start with `pi` 
 
 ### Architecture Decomposition
 
+
 **Components**:
 
 | Component                                | Layer       | Responsibility                                                | Dependencies |
@@ -563,7 +564,7 @@ Phase 5: Polish
 
 ---
 
-### Step 1: Create directory skeleton with .gitkeep placeholders
+### Step 1: Create directory skeleton with .gitkeep placeholders [DONE]
 
 **Model:** haiku
 **Agent:** haiku
@@ -578,10 +579,10 @@ Phase 5: Polish
 - `.gitkeep` files in directories that are empty in this MVP: `src/tools/.gitkeep`, `src/domain/.gitkeep`, `src/decay/.gitkeep`, `src/ontology/.gitkeep`, `infra/.gitkeep`
 
 #### Success Criteria
-- [ ] `packages/mastery-coach/` exists
-- [ ] All 9 subdirectories from design § 1 exist
-- [ ] `find packages/mastery-coach -name .gitkeep | wc -l` returns 5
-- [ ] `src/prompts/`, `src/commands/`, `scripts/`, `test/` will receive real files in later steps and do NOT need `.gitkeep`
+- [X] `packages/mastery-coach/` exists
+- [X] All 9 subdirectories from design § 1 exist
+- [X] `find packages/mastery-coach -name .gitkeep | wc -l` returns 5
+- [X] `src/prompts/`, `src/commands/`, `scripts/`, `test/` will receive real files in later steps and do NOT need `.gitkeep`
 
 #### Subtasks
 - [ ] Create directory `packages/mastery-coach/src/prompts/`
@@ -625,7 +626,7 @@ Low
 
 ---
 
-### Step 2: Add package.json and tsconfig.json
+### Step 2: Add package.json and tsconfig.json [DONE]
 
 **Model:** opus
 **Agent:** sdd:developer
@@ -639,19 +640,19 @@ Low
 - `packages/mastery-coach/tsconfig.json` — extends `../../tsconfig.base.json`, `"noEmit": true`, `include: ["src", "test"]`.
 
 #### Success Criteria
-- [ ] `package.json` contains `"name": "mastery-coach"`, `"private": true`, `"type": "module"`, `"version": "0.1.0"`
-- [ ] `package.json` contains `"pi": { "extensions": ["./src/index.ts"] }`
-- [ ] `package.json` contains `"scripts": { "test": "vitest --run", "clean": "echo 'nothing to clean'", "build": "echo 'nothing to build'", "check": "echo 'nothing to check'" }`
-- [ ] `package.json` contains `"devDependencies": { "vitest": "3.2.4" }`
-- [ ] `tsconfig.json` extends `../../tsconfig.base.json`, sets `compilerOptions.noEmit: true`, sets `include: ["src", "test"]`
-- [ ] `npm install` at repo root exits 0 and the `mastery-coach` workspace is recognised
-- [ ] `npx tsgo --noEmit` at repo root exits 0 (no errors introduced by the new package; existing errors unchanged)
+- [X] `package.json` contains `"name": "mastery-coach"`, `"private": true`, `"type": "module"`, `"version": "0.1.0"`
+- [X] `package.json` contains `"pi": { "extensions": ["./src/index.ts"] }`
+- [X] `package.json` contains `"scripts": { "test": "vitest --run", "clean": "echo 'nothing to clean'", "build": "echo 'nothing to build'", "check": "echo 'nothing to check'" }`
+- [X] `package.json` contains `"devDependencies": { "vitest": "3.2.4" }`
+- [X] `tsconfig.json` extends `../../tsconfig.base.json`, sets `compilerOptions.noEmit: true`, sets `include: ["src", "test"]`
+- [X] `npm install` at repo root exits 0 and the `mastery-coach` workspace is recognised
+- [X] `npx tsgo --noEmit` at repo root exits 0 (no errors introduced by the new package; existing errors unchanged)
 
 #### Subtasks
-- [ ] Write `packages/mastery-coach/package.json`
-- [ ] Write `packages/mastery-coach/tsconfig.json`
-- [ ] Run `npm install` from repo root and verify exit 0
-- [ ] Run `npx tsgo --noEmit` from repo root and verify exit 0
+- [X] Write `packages/mastery-coach/package.json`
+- [X] Write `packages/mastery-coach/tsconfig.json`
+- [X] Run `npm install` from repo root and verify exit 0
+- [X] Run `npx tsgo --noEmit` from repo root and verify exit 0
 
 #### Blockers
 - Lockfile churn from `npm install`. Mitigation: commit the resulting `package-lock.json` change as part of the task.
@@ -675,9 +676,9 @@ Low
 - Pi loader manifest discovery (`loader.ts:L473-490`) consumes `pi.extensions`.
 
 #### Definition of Done
-- [ ] Both files created
-- [ ] `npm install` succeeds
-- [ ] `tsgo --noEmit` succeeds
+- [X] Both files created
+- [X] `npm install` succeeds
+- [X] `tsgo --noEmit` succeeds
 - [ ] `package-lock.json` change committed
 - [ ] Behaviour covered by Step 9 (final lint + typecheck)
 
@@ -701,7 +702,7 @@ Low
 
 ---
 
-### Step 3: Add MAIN_MENU_TEXT constant in src/prompts/main-menu.ts
+### Step 3: Add MAIN_MENU_TEXT constant in src/prompts/main-menu.ts [DONE]
 
 **Model:** opus
 **Agent:** sdd:developer
@@ -714,14 +715,14 @@ Low
 - `packages/mastery-coach/src/prompts/main-menu.ts` — exports `export const MAIN_MENU_TEXT: string` containing the header, the three numbered options, and a one-line instruction line.
 
 #### Success Criteria
-- [ ] File `src/prompts/main-menu.ts` exists
-- [ ] `MAIN_MENU_TEXT` is exported as a `const` of type `string`
-- [ ] The string contains the literal substring `"1. Goal-oriented"` BEFORE `"2. Practice Today"` BEFORE `"3. Open Practice"` (order verifiable via `indexOf`)
-- [ ] The string ends with an instruction line directing the apprentice to invoke the corresponding slash command (`/goal-oriented`, `/practice-today`, or `/open-practice`) for their chosen option
-- [ ] File uses tab indentation; no line exceeds 120 chars; passes `biome check`
+- [X] File `src/prompts/main-menu.ts` exists
+- [X] `MAIN_MENU_TEXT` is exported as a `const` of type `string`
+- [X] The string contains the literal substring `"1. Goal-oriented"` BEFORE `"2. Practice Today"` BEFORE `"3. Open Practice"` (order verifiable via `indexOf`)
+- [X] The string ends with an instruction line directing the apprentice to invoke the corresponding slash command (`/goal-oriented`, `/practice-today`, or `/open-practice`) for their chosen option
+- [X] File uses tab indentation; no line exceeds 120 chars; passes `biome check`
 
 #### Subtasks
-- [ ] Write `packages/mastery-coach/src/prompts/main-menu.ts`
+- [X] Write `packages/mastery-coach/src/prompts/main-menu.ts`
 
 #### Blockers
 - None.
@@ -743,8 +744,8 @@ Low
 - Asserted by `test/mastery-coach.test.ts` (Step 7)
 
 #### Definition of Done
-- [ ] File created with correct content and ordering
-- [ ] biome lint clean
+- [X] File created with correct content and ordering
+- [X] biome lint clean
 - [ ] Behaviour covered by Step 7 unit test on `MAIN_MENU_TEXT` content + ordering
 
 #### Verification
@@ -766,7 +767,7 @@ Low
 
 ---
 
-### Step 4: Add three command stub modules in src/commands/
+### Step 4: Add three command stub modules in src/commands/ [DONE]
 
 **Model:** opus
 **Agent:** sdd:developer
@@ -853,7 +854,7 @@ Low
 
 ---
 
-### Step 5: Implement extension factory in src/index.ts
+### Step 5: Implement extension factory in src/index.ts [DONE]
 
 **Model:** opus
 **Agent:** sdd:developer
@@ -934,7 +935,7 @@ Low
 
 ---
 
-### Step 6: Add idempotent symlink script in scripts/link-extension.sh
+### Step 6: Add idempotent symlink script in scripts/link-extension.sh [DONE] [DONE]
 
 **Model:** opus
 **Agent:** sdd:developer
@@ -947,20 +948,20 @@ Low
 - `packages/mastery-coach/scripts/link-extension.sh` — executable bash script.
 
 #### Success Criteria
-- [ ] File `scripts/link-extension.sh` exists
-- [ ] Starts with `#!/usr/bin/env bash` and `set -euo pipefail`
-- [ ] Resolves `EXTENSIONS_DIR="${PI_AGENT_DIR:-$HOME/.pi/agent}/extensions"`
-- [ ] Resolves `PACKAGE_DIR="$(cd "$(dirname "$0")/.." && pwd)"`
-- [ ] Runs `mkdir -p "$EXTENSIONS_DIR"` before symlinking
-- [ ] Runs `ln -sfn "$PACKAGE_DIR" "$EXTENSIONS_DIR/mastery-coach"`
-- [ ] Echoes the resulting `EXTENSIONS_DIR/mastery-coach -> PACKAGE_DIR` mapping on stdout
-- [ ] Has the executable bit set (`chmod +x`)
-- [ ] Manual test: first invocation exits 0; second invocation also exits 0 and produces no duplicate entry; `readlink ~/.pi/agent/extensions/mastery-coach` resolves to the absolute `packages/mastery-coach/` path
+- [X] File `scripts/link-extension.sh` exists
+- [X] Starts with `#!/usr/bin/env bash` and `set -euo pipefail`
+- [X] Resolves `EXTENSIONS_DIR="${PI_AGENT_DIR:-$HOME/.pi/agent}/extensions"`
+- [X] Resolves `PACKAGE_DIR="$(cd "$(dirname "$0")/.." && pwd)"`
+- [X] Runs `mkdir -p "$EXTENSIONS_DIR"` before symlinking
+- [X] Runs `ln -sfn "$PACKAGE_DIR" "$EXTENSIONS_DIR/mastery-coach"`
+- [X] Echoes the resulting `EXTENSIONS_DIR/mastery-coach -> PACKAGE_DIR` mapping on stdout
+- [X] Has the executable bit set (`chmod +x`)
+- [X] Manual test: first invocation exits 0; second invocation also exits 0 and produces no duplicate entry; `readlink ~/.pi/agent/extensions/mastery-coach` resolves to the absolute `packages/mastery-coach/` path
 
 #### Subtasks
-- [ ] Write `packages/mastery-coach/scripts/link-extension.sh`
-- [ ] `chmod +x packages/mastery-coach/scripts/link-extension.sh`
-- [ ] Run the script twice in a clean environment and verify same symlink + exit 0 both times
+- [X] Write `packages/mastery-coach/scripts/link-extension.sh`
+- [X] `chmod +x packages/mastery-coach/scripts/link-extension.sh`
+- [X] Run the script twice in a clean environment and verify same symlink + exit 0 both times
 
 #### Blockers
 - None.
@@ -983,8 +984,8 @@ Low
 - Parallel-friendly: MUST be written alongside Step 2 (both depend only on Step 1).
 
 #### Definition of Done
-- [ ] Script created and executable
-- [ ] Idempotency verified by running twice
+- [X] Script created and executable
+- [X] Idempotency verified by running twice
 - [ ] Behaviour covered by Step 9 (E2E `pi` launch confirms extension discovery)
 
 #### Verification

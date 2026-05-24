@@ -31,7 +31,12 @@ export default function masteryCoachExtension(pi: ExtensionAPI): void {
 		// Render the menu only on fresh sessions. `reload`, `resume`, and `fork`
 		// are intentionally ignored so the menu does not re-appear mid-conversation.
 		if (event.reason === "startup" || event.reason === "new") {
-			pi.sendUserMessage(MAIN_MENU_TEXT);
+			// triggerTurn: false — display the menu without starting an LLM turn.
+			// sendUserMessage would trigger the LLM to respond to the menu text.
+			pi.sendMessage(
+				{ customType: "mastery-coach.menu", content: MAIN_MENU_TEXT, display: true },
+				{ triggerTurn: false },
+			);
 		}
 	});
 
